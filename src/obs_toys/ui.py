@@ -8,7 +8,7 @@ import gi
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
-from gi.repository import Adw, GLib, Gtk  # noqa: E402
+from gi.repository import Adw, GLib, Gtk, Pango  # noqa: E402
 
 from .catalog import load_catalog
 from .installer import install_plugin, remove_plugin
@@ -47,7 +47,7 @@ class PluginCard(Gtk.Button):
         title = Gtk.Label(label=recipe.name)
         title.add_css_class("heading")
         title.set_wrap(True)
-        title.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
+        title.set_wrap_mode(Pango.WrapMode.WORD_CHAR)
         title.set_justify(Gtk.Justification.CENTER)
         title.set_halign(Gtk.Align.CENTER)
         title.set_valign(Gtk.Align.CENTER)
@@ -185,13 +185,13 @@ class MainWindow(Adw.ApplicationWindow):
         self._detail_title = Gtk.Label(xalign=0)
         self._detail_title.add_css_class("title-1")
         self._detail_title.set_wrap(True)
-        self._detail_title.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
+        self._detail_title.set_wrap_mode(Pango.WrapMode.WORD_CHAR)
         self._detail_title.set_halign(Gtk.Align.FILL)
 
         self._detail_summary = Gtk.Label(xalign=0)
         self._detail_summary.add_css_class("dim-label")
         self._detail_summary.set_wrap(True)
-        self._detail_summary.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
+        self._detail_summary.set_wrap_mode(Pango.WrapMode.WORD_CHAR)
         self._detail_summary.set_halign(Gtk.Align.FILL)
 
         self._detail_description = Gtk.TextView()

@@ -89,6 +89,11 @@ if [[ -d /usr/lib/x86_64-linux-gnu/girepository-1.0 ]]; then
   cp -a /usr/lib/x86_64-linux-gnu/girepository-1.0/. "$APPDIR/usr/lib/girepository-1.0"/
 fi
 
+if command -v setfattr >/dev/null 2>&1; then
+  find "$APPDIR" -exec setfattr -x system.posix_acl_access {} + 2>/dev/null || true
+  find "$APPDIR" -exec setfattr -x system.posix_acl_default {} + 2>/dev/null || true
+fi
+
 cat > "$APPDIR/usr/bin/obs-toys" <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail

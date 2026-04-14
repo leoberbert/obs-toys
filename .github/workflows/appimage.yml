@@ -43,7 +43,8 @@ jobs:
             desktop-file-utils \
             libfuse2t64 \
             curl \
-            gh
+            gh \
+            attr
 
       - name: Build AppImage
         run: |
