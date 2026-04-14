@@ -2,12 +2,14 @@
 set -eu
 
 HERE="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
-PYVER_DIR="$(find "$HERE/usr/venv/lib" -maxdepth 1 -mindepth 1 -type d -name 'python3.*' | head -n1)"
+PYVER_DIR="$(find "$HERE/usr/python/lib" -maxdepth 1 -mindepth 1 -type d -name 'python3.*' | head -n1)"
 
-export PATH="$HERE/usr/bin:$HERE/usr/venv/bin:${PATH:-}"
+export PATH="$HERE/usr/bin:$HERE/usr/python/bin:${PATH:-}"
 export LD_LIBRARY_PATH="$HERE/usr/lib:${LD_LIBRARY_PATH:-}"
-export PYTHONHOME="$HERE/usr/venv"
+export GI_TYPELIB_PATH="$HERE/usr/lib/girepository-1.0:${GI_TYPELIB_PATH:-}"
+export PYTHONHOME="$HERE/usr/python"
 export PYTHONPATH="$PYVER_DIR/site-packages:${PYTHONPATH:-}"
+export PYTHONNOUSERSITE=1
 export XDG_DATA_DIRS="$HERE/usr/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 
-exec "$HERE/usr/venv/bin/python3" -m obs_toys "$@"
+exec "$HERE/usr/python/bin/python3" -m obs_toys "$@"

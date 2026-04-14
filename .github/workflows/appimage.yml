@@ -17,6 +17,8 @@ permissions:
 jobs:
   appimage:
     runs-on: ubuntu-24.04
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
 
     steps:
       - name: Checkout
@@ -40,7 +42,8 @@ jobs:
             python3-pip \
             desktop-file-utils \
             libfuse2t64 \
-            curl
+            curl \
+            gh
 
       - name: Build AppImage
         run: |
@@ -54,10 +57,14 @@ jobs:
           path: dist/appimage/OBS-Toys-x86_64.AppImage
 
       - name: Publish GitHub release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ inputs.version }}
-          target_commitish: ${{ github.sha }}
-          name: ${{ inputs.release_name }} ${{ inputs.version }}
-          generate_release_notes: true
-          files: dist/appimage/OBS-Toys-x86_64.AppImage
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ inputs.version }}
+          RELEASE_NAME: ${{ inputs.release_name }}
+        run: |
+          gh release view "$VERSION" >/dev/null 2>&1 || \
+            gh release create "$VERSION" \
+              --target "${GITHUB_SHA}" \
+              --title "$RELEASE_NAME $VERSION" \
+              --generate-notes
+          gh release upload "$VERSION" dist/appimage/OBS-Toys-x86_64.AppImage --clobber

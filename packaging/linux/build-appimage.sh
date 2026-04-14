@@ -7,6 +7,15 @@ APPDIR="$BUILD_DIR/OBS-Toys.AppDir"
 DESKTOP_FILE="$ROOT_DIR/packaging/linux/io.github.leoberbert.obs_toys.desktop"
 ICON_SOURCE="$ROOT_DIR/src/obs_toys/data/icons/obs-toys.svg"
 ICON_TARGET="$APPDIR/usr/share/icons/hicolor/scalable/apps/io.github.leoberbert.obs_toys.svg"
+PYTHON_BIN="$(command -v python3)"
+PYTHON_VERSION="$(python3 - <<'EOF'
+import sys
+print(f"{sys.version_info.major}.{sys.version_info.minor}")
+EOF
+)"
+PYTHON_PREFIX="$APPDIR/usr/python"
+PYTHON_SITE_PACKAGES="$PYTHON_PREFIX/lib/python$PYTHON_VERSION/site-packages"
+SYSTEM_DIST_PACKAGES="/usr/lib/python3/dist-packages"
 PYTHON_LIBS="$(python3 - <<'EOF'
 import sysconfig
 from pathlib import Path
@@ -23,11 +32,18 @@ for item in dict.fromkeys(names):
     print(item)
 EOF
 )"
+PYTHON_STDLIB="$(python3 - <<'EOF'
+import sysconfig
+print(sysconfig.get_path("stdlib") or "")
+EOF
+)"
 
 rm -rf "$APPDIR"
 mkdir -p \
   "$APPDIR/usr/bin" \
   "$APPDIR/usr/lib" \
+  "$APPDIR/usr/lib/girepository-1.0" \
+  "$PYTHON_PREFIX/bin" \
   "$APPDIR/usr/share/applications" \
   "$APPDIR/usr/share/icons/hicolor/scalable/apps"
 
@@ -48,9 +64,30 @@ if [[ -n "$PYTHON_LIBS" ]]; then
   done <<< "$PYTHON_LIBS"
 fi
 
-python3 -m venv --copies --system-site-packages "$APPDIR/usr/venv"
-"$APPDIR/usr/venv/bin/pip" install --upgrade pip wheel setuptools
-"$APPDIR/usr/venv/bin/pip" install --no-deps "$ROOT_DIR"
+cp -L "$PYTHON_BIN" "$PYTHON_PREFIX/bin/python3"
+
+if [[ -n "$PYTHON_STDLIB" && -d "$PYTHON_STDLIB" ]]; then
+  mkdir -p "$PYTHON_PREFIX/lib/python$PYTHON_VERSION"
+  cp -a "$PYTHON_STDLIB"/. "$PYTHON_PREFIX/lib/python$PYTHON_VERSION"/
+fi
+
+mkdir -p "$PYTHON_SITE_PACKAGES"
+python3 -m pip install --upgrade pip wheel setuptools
+python3 -m pip install --no-deps --target "$PYTHON_SITE_PACKAGES" "$ROOT_DIR"
+
+for path in \
+  "$SYSTEM_DIST_PACKAGES/gi" \
+  "$SYSTEM_DIST_PACKAGES/pygtkcompat" \
+  "$SYSTEM_DIST_PACKAGES/cairo" \
+  "$SYSTEM_DIST_PACKAGES/PyGObject-"*.dist-info \
+  "$SYSTEM_DIST_PACKAGES/pycairo-"*.dist-info; do
+  [[ -e "$path" ]] || continue
+  cp -a "$path" "$PYTHON_SITE_PACKAGES"/
+done
+
+if [[ -d /usr/lib/x86_64-linux-gnu/girepository-1.0 ]]; then
+  cp -a /usr/lib/x86_64-linux-gnu/girepository-1.0/. "$APPDIR/usr/lib/girepository-1.0"/
+fi
 
 cat > "$APPDIR/usr/bin/obs-toys" <<'EOF'
 #!/usr/bin/env bash
