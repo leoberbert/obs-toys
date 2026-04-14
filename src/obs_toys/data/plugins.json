@@ -1,0 +1,129 @@
+{
+  "plugins": [
+    {
+      "id": "obs-multi-rtmp",
+      "name": "OBS Multi RTMP",
+      "summary": "Send one OBS output to multiple RTMP destinations.",
+      "description": "This is a plugin to streaming to multiple RTMP servers concurrently. It's able to share encoders with main output of OBS to save CPU power. It can also use standalone encoders with basic configuration (bitrate).",
+      "project_url": "https://github.com/sorayuki/obs-multi-rtmp",
+      "supported_formats": [
+        ".tar.xz",
+        ".tar.gz",
+        ".zip",
+        ".deb"
+      ],
+      "source": {
+        "repo": "sorayuki/obs-multi-rtmp",
+        "asset_patterns": [
+          "flatpak.*\\.tar\\.(xz|gz)$",
+          "linux.*\\.tar\\.(xz|gz)$",
+          "\\.deb$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "obs-multi-rtmp",
+        "layouts": [
+          {
+            "from": [
+              "usr/lib/x86_64-linux-gnu/obs-plugins/obs-multi-rtmp.so",
+              "usr/lib/obs-plugins/obs-multi-rtmp.so",
+              "obs-plugins/obs-multi-rtmp.so"
+            ],
+            "to": "bin/64bit/obs-multi-rtmp.so",
+            "kind": "file"
+          },
+          {
+            "from": [
+              "usr/share/obs/obs-plugins/obs-multi-rtmp/locale",
+              "share/obs/obs-plugins/obs-multi-rtmp/locale",
+              "data/locale"
+            ],
+            "to": "data/locale",
+            "kind": "dir"
+          }
+        ]
+      }
+    },
+    {
+      "id": "obs-aitum-stream-suite",
+      "name": "Aitum Stream Suite",
+      "summary": "Aitum's combined vertical and multistream workflow suite for OBS.",
+      "description": "Customise your environments going between our live and build tabs. Aitum Stream Suite allows you to stream to multiple services at one time combining our multi and vertical OBS plugins into an all in one package. No need for any other multi chat, stream information or activity feed elsewhere. Aitum Stream Suite is everything that is familiar to you. Expand you streaming horizons today!",
+      "project_url": "https://github.com/Aitum/obs-aitum-stream-suite",
+      "supported_formats": [
+        ".deb"
+      ],
+      "source": {
+        "repo": "Aitum/obs-aitum-stream-suite",
+        "asset_patterns": [
+          "aitum-stream-suite-linux-gnu\\.deb$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "aitum-stream-suite",
+        "layouts": [
+          {
+            "from": [
+              "usr/lib/x86_64-linux-gnu/obs-plugins/aitum-stream-suite.so",
+              "usr/lib/obs-plugins/aitum-stream-suite.so",
+              "obs-plugins/aitum-stream-suite.so"
+            ],
+            "to": "bin/64bit/aitum-stream-suite.so",
+            "kind": "file"
+          },
+          {
+            "from": [
+              "usr/share/obs/obs-plugins/aitum-stream-suite/locale",
+              "share/obs/obs-plugins/aitum-stream-suite/locale",
+              "data/locale"
+            ],
+            "to": "data/locale",
+            "kind": "dir"
+          }
+        ]
+      }
+    },
+    {
+      "id": "obs-move-transition",
+      "name": "OBS Move Transition",
+      "summary": "Adds animated move transitions and transform actions to OBS.",
+      "description": "Plugin for OBS Studio to move sources to a new position during scene transition.",
+      "project_url": "https://github.com/exeldro/obs-move-transition",
+      "supported_formats": [
+        ".deb"
+      ],
+      "source": {
+        "repo": "exeldro/obs-move-transition",
+        "asset_patterns": [
+          "x86_64-linux-gnu\\.deb$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "move-transition",
+        "layouts": [
+          {
+            "from": [
+              "usr/lib/x86_64-linux-gnu/obs-plugins/move-transition.so",
+              "usr/lib/obs-plugins/move-transition.so",
+              "obs-plugins/move-transition.so"
+            ],
+            "to": "bin/64bit/move-transition.so",
+            "kind": "file"
+          },
+          {
+            "from": [
+              "usr/share/obs/obs-plugins/move-transition/locale",
+              "share/obs/obs-plugins/move-transition/locale",
+              "data/locale"
+            ],
+            "to": "data/locale",
+            "kind": "dir"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+[project]
+name = "obs-toys"
+version = "0.1.0"
+description = "A GTK/libadwaita plugin installer for OBS Studio Flatpak."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Leonardo Berbert", email = "leo4berbert@gmail.com" },
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: X11 Applications :: GTK",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: Multimedia :: Video",
+]
+dependencies = [
+    "PyGObject",
+    "pycairo",
+]
+
+[project.gui-scripts]
+obs-toys = "obs_toys:main"
+
+[project.urls]
+Homepage = "https://github.com/leoberbert/obs-toys"
+Issues = "https://github.com/leoberbert/obs-toys/issues"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+obs_toys = ["data/*.json", "data/icons/*.svg"]
