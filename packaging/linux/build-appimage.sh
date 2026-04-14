@@ -7,14 +7,20 @@ APPDIR="$BUILD_DIR/OBS-Toys.AppDir"
 DESKTOP_FILE="$ROOT_DIR/packaging/linux/io.github.leoberbert.obs_toys.desktop"
 ICON_SOURCE="$ROOT_DIR/src/obs_toys/data/icons/obs-toys.svg"
 ICON_TARGET="$APPDIR/usr/share/icons/hicolor/scalable/apps/io.github.leoberbert.obs_toys.svg"
-PYTHON_LIB="$(python3 - <<'EOF'
+PYTHON_LIBS="$(python3 - <<'EOF'
 import sysconfig
 from pathlib import Path
 
 libdir = Path(sysconfig.get_config_var("LIBDIR") or "")
-ldlibrary = sysconfig.get_config_var("LDLIBRARY") or ""
-candidate = libdir / ldlibrary
-print(candidate if candidate.exists() else "")
+names = []
+for key in ("LDLIBRARY", "INSTSONAME", "PY3LIBRARY"):
+    value = sysconfig.get_config_var(key)
+    if value:
+        candidate = libdir / value
+        if candidate.exists():
+            names.append(str(candidate))
+for item in dict.fromkeys(names):
+    print(item)
 EOF
 )"
 
@@ -32,8 +38,14 @@ cp "$ICON_SOURCE" "$ICON_TARGET"
 ln -sf "usr/share/applications/$(basename "$DESKTOP_FILE")" "$APPDIR/$(basename "$DESKTOP_FILE")"
 ln -sf "$ICON_TARGET" "$APPDIR/io.github.leoberbert.obs_toys.svg"
 
-if [[ -n "$PYTHON_LIB" && -f "$PYTHON_LIB" ]]; then
-  cp "$PYTHON_LIB" "$APPDIR/usr/lib/"
+if [[ -n "$PYTHON_LIBS" ]]; then
+  while IFS= read -r libpath; do
+    [[ -z "$libpath" ]] && continue
+    cp -L "$libpath" "$APPDIR/usr/lib/"
+    if [[ -L "$libpath" ]]; then
+      ln -sf "$(basename "$(readlink -f "$libpath")")" "$APPDIR/usr/lib/$(basename "$libpath")"
+    fi
+  done <<< "$PYTHON_LIBS"
 fi
 
 python3 -m venv --copies --system-site-packages "$APPDIR/usr/venv"
