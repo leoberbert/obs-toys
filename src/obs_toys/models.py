@@ -6,8 +6,10 @@ from pathlib import Path
 
 @dataclass(slots=True)
 class AssetSource:
-    repo: str
     asset_patterns: list[str]
+    repo: str = ""
+    provider: str = "github"
+    resource_path: str = ""
     prereleases: bool = False
 
 
@@ -16,6 +18,7 @@ class InstallLayout:
     sources: list[str]
     destination: str
     kind: str = "file"
+    optional: bool = False
 
 
 @dataclass(slots=True)

@@ -13,7 +13,7 @@ from gi.repository import Adw, GLib, Gtk  # noqa: E402
 from .catalog import load_catalog
 from .installer import install_plugin, remove_plugin
 from .models import PluginRecipe
-from .obs import is_obs_flatpak_installed, plugin_status
+from .obs import close_obs, is_obs_installed, is_obs_running, plugin_status
 
 
 ICON_PATH = Path(__file__).resolve().parent / "data" / "icons" / "obs-toys.svg"
@@ -110,14 +110,13 @@ class MainWindow(Adw.ApplicationWindow):
         toolbar.add_top_bar(self._header_bar)
 
         self._status_banner = Adw.Banner()
-        self._status_banner.set_title("OBS Flatpak profile not detected.")
+        self._status_banner.set_title("OBS system profile not detected.")
         self._status_banner.set_button_label("Refresh")
         self._status_banner.connect("button-clicked", lambda *_args: self._refresh_environment())
 
         self._main_stack = Gtk.Stack()
-        self._main_stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT)
-        self._main_stack.set_transition_duration(220)
-        self._main_stack.connect("notify::visible-child-name", self._on_visible_child_changed)
+        self._main_stack.set_transition_type(Gtk.StackTransitionType.NONE)
+        self._main_stack.set_transition_duration(0)
         self._main_stack.add_named(self._build_catalog_page(), "catalog")
         self._main_stack.add_named(self._build_detail_page(), "detail")
 
@@ -137,9 +136,7 @@ class MainWindow(Adw.ApplicationWindow):
 
         intro_row = Adw.ActionRow()
         intro_row.set_title("Welcome to OBS Toys")
-        intro_row.set_subtitle(
-            "Choose a plugin below to install or remove it from your OBS Flatpak profile."
-        )
+        intro_row.set_subtitle("A friendly app for installing OBS plugins on Linux.")
 
         if ICON_PATH.exists():
             logo = Gtk.Image.new_from_file(str(ICON_PATH))
@@ -248,11 +245,11 @@ class MainWindow(Adw.ApplicationWindow):
         clamp = Adw.Clamp()
         clamp.set_maximum_size(700)
         clamp.set_child(content)
-
-        self._detail_scroll = Gtk.ScrolledWindow()
-        self._detail_scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
-        self._detail_scroll.set_child(clamp)
-        return self._detail_scroll
+        page = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        page.set_hexpand(True)
+        page.set_vexpand(True)
+        page.append(clamp)
+        return page
 
     def _create_project_button(self, uri: str = "") -> Gtk.LinkButton:
         button = Gtk.LinkButton(uri=uri, label="")
@@ -299,26 +296,7 @@ class MainWindow(Adw.ApplicationWindow):
         self._update_status(recipe)
         self._back_button.set_visible(True)
         self._main_stack.set_visible_child_name("detail")
-        self._schedule_detail_scroll_reset()
-
-    def _on_visible_child_changed(self, _stack: Gtk.Stack, _param_spec: object) -> None:
-        if self._main_stack.get_visible_child_name() == "detail":
-            self._schedule_detail_scroll_reset()
-
-    def _schedule_detail_scroll_reset(self) -> None:
-        self._reset_detail_scroll()
-        GLib.idle_add(self._reset_detail_scroll)
-        GLib.timeout_add(80, self._reset_detail_scroll)
-        GLib.timeout_add(260, self._reset_detail_scroll)
-
-    def _reset_detail_scroll(self) -> bool:
-        if hasattr(self, "_detail_scroll"):
-            vadjustment = self._detail_scroll.get_vadjustment()
-            hadjustment = self._detail_scroll.get_hadjustment()
-            vadjustment.set_value(vadjustment.get_lower())
-            hadjustment.set_value(hadjustment.get_lower())
-            self._back_button.grab_focus()
-        return False
+        self._back_button.grab_focus()
 
     def _on_search_changed(self, _entry: Gtk.SearchEntry) -> None:
         query = self._search_entry.get_text().strip().lower()
@@ -336,7 +314,7 @@ class MainWindow(Adw.ApplicationWindow):
             self._show_catalog_page()
 
     def _refresh_environment(self) -> None:
-        installed = is_obs_flatpak_installed()
+        installed = is_obs_installed()
         self._status_banner.set_revealed(not installed)
 
         for card in self._cards:
@@ -350,7 +328,7 @@ class MainWindow(Adw.ApplicationWindow):
         self._status_row.set_subtitle("Installed" if status.installed else "Not installed")
         self._location_row.set_subtitle(str(status.plugin_path))
         self._install_button.set_visible(not status.installed)
-        self._install_button.set_sensitive(is_obs_flatpak_installed())
+        self._install_button.set_sensitive(is_obs_installed())
         self._remove_button.set_visible(status.installed)
         self._remove_button.set_sensitive(status.installed)
         for card in self._cards:
@@ -363,10 +341,47 @@ class MainWindow(Adw.ApplicationWindow):
             return
 
         recipe = self._selected_recipe
+        if is_obs_running():
+            dialog = Adw.MessageDialog.new(
+                self,
+                "OBS is currently open",
+                "Please close OBS before installing plugins. OBS Toys can try to close it for you and continue the installation.",
+            )
+            dialog.add_response("cancel", "Cancel")
+            dialog.add_response("close_and_install", "Close OBS and Install")
+            dialog.set_response_appearance("close_and_install", Adw.ResponseAppearance.SUGGESTED)
+            dialog.set_default_response("close_and_install")
+            dialog.set_close_response("cancel")
+            dialog.connect("response", self._on_close_obs_install_response, recipe)
+            dialog.present()
+            return
+
+        self._present_install_confirmation(recipe)
+
+    def _on_close_obs_install_response(
+        self,
+        dialog: Adw.MessageDialog,
+        response: str,
+        recipe: PluginRecipe,
+    ) -> None:
+        dialog.close()
+        if response != "close_and_install":
+            return
+
+        if not close_obs():
+            self._show_result_dialog(
+                "Could Not Close OBS",
+                "OBS Toys could not close OBS automatically. Please close it manually and try again.",
+            )
+            return
+
+        self._present_install_confirmation(recipe)
+
+    def _present_install_confirmation(self, recipe: PluginRecipe) -> None:
         dialog = Adw.MessageDialog.new(
             self,
             f"Install {recipe.name}?",
-            "This will download the plugin release and copy its files into your OBS Flatpak profile.",
+            "This will download the plugin release and copy its files into your OBS system profile.",
         )
         dialog.add_response("cancel", "Cancel")
         dialog.add_response("install", "Install Plugin")
@@ -411,7 +426,7 @@ class MainWindow(Adw.ApplicationWindow):
         dialog = Adw.MessageDialog.new(
             self,
             f"Remove {recipe.name}?",
-            "This will remove the plugin files from your OBS Flatpak profile.",
+            "This will remove the plugin files from your OBS system profile.",
         )
         dialog.add_response("cancel", "Cancel")
         dialog.add_response("remove", "Remove Plugin")

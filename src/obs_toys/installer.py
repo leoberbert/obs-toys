@@ -114,7 +114,12 @@ def _copy_layouts(recipe: PluginRecipe, extracted_root: Path) -> Path:
     target_root.mkdir(parents=True, exist_ok=True)
 
     for layout in recipe.layouts:
-        source_path = _resolve_source_path(extracted_root, layout.sources)
+        try:
+            source_path = _resolve_source_path(extracted_root, layout.sources)
+        except RuntimeError:
+            if layout.optional:
+                continue
+            raise
         destination_path = target_root / layout.destination
         destination_path.parent.mkdir(parents=True, exist_ok=True)
         if source_path.is_dir() or layout.kind == "dir":

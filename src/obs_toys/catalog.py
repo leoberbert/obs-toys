@@ -20,8 +20,10 @@ def load_catalog() -> list[PluginRecipe]:
                 description=entry["description"],
                 project_url=entry["project_url"],
                 source=AssetSource(
-                    repo=entry["source"]["repo"],
+                    repo=entry["source"].get("repo", ""),
                     asset_patterns=entry["source"]["asset_patterns"],
+                    provider=entry["source"].get("provider", "github"),
+                    resource_path=entry["source"].get("resource_path", ""),
                     prereleases=entry["source"].get("prereleases", False),
                 ),
                 plugin_dir=entry["install"]["plugin_dir"],
@@ -30,6 +32,7 @@ def load_catalog() -> list[PluginRecipe]:
                         sources=layout["from"] if isinstance(layout["from"], list) else [layout["from"]],
                         destination=layout["to"],
                         kind=layout.get("kind", "file"),
+                        optional=layout.get("optional", False),
                     )
                     for layout in entry["install"]["layouts"]
                 ],

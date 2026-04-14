@@ -124,6 +124,300 @@
           }
         ]
       }
+    },
+    {
+      "id": "obs-advanced-masks",
+      "name": "OBS Advanced Masks",
+      "summary": "Expand masking workflows for OBS scenes and sources.",
+      "description": "OBS Advanced Masks is an open-source project designed to expand the masking functionalities within OBS Studio. This plug-in provides filters for users to create intricate and customized masks for their OBS Scenes and Sources.",
+      "project_url": "https://github.com/FiniteSingularity/obs-advanced-masks",
+      "supported_formats": [
+        ".zip",
+        ".tar.gz"
+      ],
+      "source": {
+        "repo": "FiniteSingularity/obs-advanced-masks",
+        "asset_patterns": [
+          "ubuntu-22\\.04\\.tar\\.gz\\.zip$",
+          "linux.*\\.zip$",
+          "\\.tar\\.gz$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "obs-advanced-masks",
+        "layouts": [
+          {
+            "from": [
+              "obs-advanced-masks",
+              "usr/share/obs/obs-plugins/obs-advanced-masks",
+              "share/obs/obs-plugins/obs-advanced-masks"
+            ],
+            "to": ".",
+            "kind": "dir"
+          }
+        ]
+      }
+    },
+    {
+      "id": "obs-stroke-glow-shadow",
+      "name": "OBS Stroke Glow Shadow",
+      "summary": "Apply stroke, glow, and shadow effects to masked OBS sources.",
+      "description": "The Stroke, Glow, Shadow Plugin offers an efficient way to apply Stroke, Glow, and Shadow effects to masked sources in OBS.",
+      "project_url": "https://github.com/FiniteSingularity/obs-stroke-glow-shadow",
+      "supported_formats": [
+        ".zip",
+        ".tar.gz"
+      ],
+      "source": {
+        "repo": "FiniteSingularity/obs-stroke-glow-shadow",
+        "asset_patterns": [
+          "ubuntu-22\\.04\\.tar\\.gz\\.zip$",
+          "linux.*\\.zip$",
+          "\\.tar\\.gz$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "obs-stroke-glow-shadow",
+        "layouts": [
+          {
+            "from": [
+              "obs-stroke-glow-shadow",
+              "usr/share/obs/obs-plugins/obs-stroke-glow-shadow",
+              "share/obs/obs-plugins/obs-stroke-glow-shadow"
+            ],
+            "to": ".",
+            "kind": "dir"
+          }
+        ]
+      }
+    },
+    {
+      "id": "obs-retro-effects",
+      "name": "OBS Retro Effects",
+      "summary": "Add CRT, NTSC, and other retro-style visual filters to OBS sources.",
+      "description": "Retro Effects is an OBS plug-in that provides several filters to simulate retro hardware (e.g.- CRTs, NTSC Signals, etc...) giving your OBS sources an authentic retro look/feel. Retro effects provides the following filters.",
+      "project_url": "https://github.com/FiniteSingularity/obs-retro-effects",
+      "supported_formats": [
+        ".zip",
+        ".tar.gz"
+      ],
+      "source": {
+        "repo": "FiniteSingularity/obs-retro-effects",
+        "asset_patterns": [
+          "ubuntu-22\\.04\\.tar\\.gz\\.zip$",
+          "linux.*\\.zip$",
+          "\\.tar\\.gz$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "obs-retro-effects",
+        "layouts": [
+          {
+            "from": [
+              "obs-retro-effects",
+              "usr/share/obs/obs-plugins/obs-retro-effects",
+              "share/obs/obs-plugins/obs-retro-effects"
+            ],
+            "to": ".",
+            "kind": "dir"
+          }
+        ]
+      }
+    },
+    {
+      "id": "obs-3d-effect",
+      "name": "OBS 3D Effect",
+      "summary": "Add a 3D effect filter to sources in OBS.",
+      "description": "Add a 3D effect filter to sources in OBS.",
+      "project_url": "https://obsproject.com/forum/resources/3d-effect.1692/",
+      "supported_formats": [
+        ".zip"
+      ],
+      "source": {
+        "provider": "obs_resources",
+        "resource_path": "3d-effect.1692/download",
+        "asset_patterns": [
+          "3d-effect-.*-linux\\.zip$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "3d-effect",
+        "layouts": [
+          {
+            "from": [
+              "3d-effect",
+              "obs-3d-effect",
+              "usr/share/obs/obs-plugins/3d-effect",
+              "share/obs/obs-plugins/3d-effect"
+            ],
+            "to": ".",
+            "kind": "dir"
+          }
+        ]
+      }
+    },
+    {
+      "id": "composite-blur",
+      "name": "Composite Blur",
+      "summary": "Add high-quality blur filters with multiple algorithms and quality levels.",
+      "description": "Composite Blur Plugin is a comprehensive blur plugin that provides blur algorithms and types for all levels of quality and computational need.",
+      "project_url": "https://obsproject.com/forum/resources/composite-blur.1780/",
+      "supported_formats": [
+        ".zip"
+      ],
+      "source": {
+        "provider": "obs_resources",
+        "resource_path": "composite-blur.1780/download",
+        "asset_patterns": [
+          "composite-blur-.*-linux\\.zip$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "composite-blur",
+        "layouts": [
+          {
+            "from": [
+              "composite-blur",
+              "obs-composite-blur",
+              "usr/share/obs/obs-plugins/composite-blur",
+              "usr/share/obs/obs-plugins/obs-composite-blur",
+              "share/obs/obs-plugins/composite-blur",
+              "share/obs/obs-plugins/obs-composite-blur"
+            ],
+            "to": ".",
+            "kind": "dir"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source-clone",
+      "name": "Source Clone",
+      "summary": "Clone OBS sources so the copy can use different filters from the original.",
+      "description": "Add source to OBS that lets you clone sources to allow different filters than the original.",
+      "project_url": "https://obsproject.com/forum/resources/source-clone.1632/",
+      "supported_formats": [
+        ".zip"
+      ],
+      "source": {
+        "provider": "obs_resources",
+        "resource_path": "source-clone.1632/download",
+        "asset_patterns": [
+          "source-clone-.*-linux\\.zip$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "source-clone",
+        "layouts": [
+          {
+            "from": [
+              "usr/lib/x86_64-linux-gnu/obs-plugins/source-clone.so",
+              "usr/lib/obs-plugins/source-clone.so",
+              "obs-plugins/source-clone.so",
+              "source-clone.so"
+            ],
+            "to": "bin/64bit/source-clone.so",
+            "kind": "file"
+          },
+          {
+            "from": [
+              "usr/share/obs/obs-plugins/source-clone/locale",
+              "share/obs/obs-plugins/source-clone/locale",
+              "data/locale",
+              "locale"
+            ],
+            "to": "data/locale",
+            "kind": "dir"
+          }
+        ]
+      }
+    },
+    {
+      "id": "advanced-scene-switcher",
+      "name": "Advanced Scene Switcher",
+      "summary": "Automate scene changes and actions in OBS with rules and macros.",
+      "description": "This plugin will allow you to automate various tasks using \"Macros\". Macros consist of a list of conditions under which a list of actions will be performed.",
+      "project_url": "https://github.com/WarmUpTill/SceneSwitcher",
+      "supported_formats": [
+        ".deb",
+        ".tar.xz"
+      ],
+      "source": {
+        "repo": "WarmUpTill/SceneSwitcher",
+        "asset_patterns": [
+          "x86_64-linux-gnu\\.deb$",
+          "x86_64-linux-gnu\\.tar\\.xz$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "advanced-scene-switcher",
+        "layouts": [
+          {
+            "from": [
+              "usr/lib/x86_64-linux-gnu/obs-plugins/advanced-scene-switcher.so",
+              "usr/lib/obs-plugins/advanced-scene-switcher.so",
+              "obs-plugins/advanced-scene-switcher.so"
+            ],
+            "to": "bin/64bit/advanced-scene-switcher.so",
+            "kind": "file"
+          },
+          {
+            "from": [
+              "usr/lib/x86_64-linux-gnu/advanced-scene-switcher-lib.so.1",
+              "usr/lib/advanced-scene-switcher-lib.so.1",
+              "advanced-scene-switcher-lib.so.1"
+            ],
+            "to": "bin/64bit/advanced-scene-switcher-lib.so.1",
+            "kind": "file"
+          },
+          {
+            "from": [
+              "usr/lib/x86_64-linux-gnu/advanced-scene-switcher-lib.so",
+              "usr/lib/advanced-scene-switcher-lib.so",
+              "advanced-scene-switcher-lib.so"
+            ],
+            "to": "bin/64bit/advanced-scene-switcher-lib.so",
+            "kind": "file",
+            "optional": true
+          },
+          {
+            "from": [
+              "usr/lib/x86_64-linux-gnu/obs-plugins/adv-ss-plugins",
+              "usr/lib/obs-plugins/adv-ss-plugins",
+              "adv-ss-plugins"
+            ],
+            "to": "bin/64bit/adv-ss-plugins",
+            "kind": "dir",
+            "optional": true
+          },
+          {
+            "from": [
+              "usr/share/obs/obs-plugins/advanced-scene-switcher/locale",
+              "share/obs/obs-plugins/advanced-scene-switcher/locale",
+              "data/locale"
+            ],
+            "to": "data/locale",
+            "kind": "dir"
+          },
+          {
+            "from": [
+              "usr/share/obs/obs-plugins/advanced-scene-switcher/res",
+              "share/obs/obs-plugins/advanced-scene-switcher/res",
+              "data/res"
+            ],
+            "to": "data/res",
+            "kind": "dir",
+            "optional": true
+          }
+        ]
+      }
     }
   ]
 }
