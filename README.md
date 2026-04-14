@@ -17,6 +17,31 @@
 
 **OBS Toys** is a desktop app focused on making OBS Studio plugins easier to use on Linux. Instead of manually unpacking `.deb`, `.zip`, or `.tar.*` files and copying plugin assets into the correct OBS profile directories, OBS Toys handles that workflow in a cleaner GTK interface.
 
+## Download and Run
+
+Download the latest `OBS-Toys-x86_64.AppImage` from the [Releases](https://github.com/leoberbert/obs-toys/releases) page.
+
+Then make it executable and run it:
+
+```bash
+chmod +x OBS-Toys-x86_64.AppImage
+./OBS-Toys-x86_64.AppImage
+```
+
+If your browser saves the file in `~/Downloads`, for example:
+
+```bash
+cd ~/Downloads
+chmod +x OBS-Toys-x86_64.AppImage
+./OBS-Toys-x86_64.AppImage
+```
+
+Notes:
+
+- AppImage files usually need `chmod +x` after downloading.
+- OBS should be installed on your system before using OBS Toys.
+- If OBS is open during a plugin install, OBS Toys will ask you to close it first.
+
 ## Why OBS Toys
 
 - **Built for OBS on Linux**: install plugins into `~/.config/obs-studio/plugins` without manual extraction steps.
