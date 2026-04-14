@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=OBS Toys
+Comment=A friendly app for installing OBS plugins on Linux.
+Exec=obs-toys
+Icon=io.github.leoberbert.obs_toys
+Terminal=false
+Categories=AudioVideo;Video;Utility;
+StartupNotify=true

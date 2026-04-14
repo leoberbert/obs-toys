@@ -1,0 +1,43 @@
+name: Build AppImage
+
+on:
+  workflow_dispatch:
+
+jobs:
+  appimage:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libgtk-4-1 \
+            libadwaita-1-0 \
+            gir1.2-gtk-4.0 \
+            gir1.2-adw-1 \
+            python3-gi \
+            python3-venv \
+            python3-pip \
+            desktop-file-utils \
+            libfuse2t64 \
+            curl
+
+      - name: Build AppImage
+        run: |
+          chmod +x packaging/linux/build-appimage.sh
+          packaging/linux/build-appimage.sh
+
+      - name: Upload AppImage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: obs-toys-appimage
+          path: dist/appimage/OBS-Toys-x86_64.AppImage

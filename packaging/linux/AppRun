@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eu
+
+HERE="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+PYVER_DIR="$(find "$HERE/usr/venv/lib" -maxdepth 1 -mindepth 1 -type d -name 'python3.*' | head -n1)"
+
+export PATH="$HERE/usr/bin:$HERE/usr/venv/bin:${PATH:-}"
+export PYTHONHOME="$HERE/usr/venv"
+export PYTHONPATH="$PYVER_DIR/site-packages:${PYTHONPATH:-}"
+export XDG_DATA_DIRS="$HERE/usr/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+
+exec "$HERE/usr/venv/bin/python3" -m obs_toys "$@"
