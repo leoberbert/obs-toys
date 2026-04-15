@@ -10,6 +10,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-GPL--3.0-green.svg" alt="License"></a>
+  <a href="https://github.com/leoberbert/obs-toys/releases"><img src="https://img.shields.io/github/downloads/leoberbert/obs-toys/total?label=Downloads" alt="Downloads"></a>
   <a href="https://www.gtk.org/"><img src="https://img.shields.io/badge/GTK-4.0+-orange.svg" alt="GTK"></a>
   <a href="https://gnome.pages.gitlab.gnome.org/libadwaita/"><img src="https://img.shields.io/badge/libadwaita-1.0+-purple.svg" alt="libadwaita"></a>
   <a href="https://github.com/leoberbert/obs-toys"><img src="https://img.shields.io/badge/GitHub-obs--toys-black.svg" alt="GitHub"></a>
@@ -39,8 +40,11 @@ chmod +x OBS-Toys-x86_64.AppImage
 Notes:
 
 - AppImage files usually need `chmod +x` after downloading.
-- OBS should be installed on your system before using OBS Toys.
+- OBS Studio must be installed on your system before using OBS Toys.
 - If OBS is open during a plugin install, OBS Toys will ask you to close it first.
+- OBS Toys currently targets the system-installed version of OBS Studio and does not support the Flatpak build yet.
+- Some plugins depend on OBS libraries and runtime components provided by the system installation, which is why Flatpak support is not reliable at the moment.
+- We are evaluating ways to make OBS Toys work for both system-installed OBS and Flatpak in the future, but for now only the native system installation is supported.
 
 ## Why OBS Toys
 
@@ -104,6 +108,9 @@ obs-toys
 
 - OBS Toys is intentionally curated. Not every OBS plugin published for Linux is guaranteed to work correctly out of the box.
 - Some plugins come from GitHub Releases, while others are better discovered through OBS Resources.
+- OBS Studio needs to be installed on the system before OBS Toys can install plugins.
+- OBS Flatpak is not supported for now. The current plugin workflow targets `~/.config/obs-studio/plugins`, and some plugins require OBS dependencies that are available only in the system-installed environment.
+- Universal support for both native OBS and Flatpak is something we may add later, but it is still under evaluation.
 - The goal is to keep the list practical and reliable rather than simply large.
 
 ## Roadmap

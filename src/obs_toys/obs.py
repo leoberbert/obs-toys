@@ -5,6 +5,7 @@ import subprocess
 import time
 from pathlib import Path
 
+from .i18n import _
 from .models import PluginRecipe, PluginStatus
 
 
@@ -51,14 +52,14 @@ def close_obs(timeout_seconds: float = 5.0) -> bool:
 
 
 def obs_installation_label() -> str:
-    return "system OBS profile"
+    return _("system OBS profile")
 
 
 def plugin_status(recipe: PluginRecipe) -> PluginStatus:
     path = obs_plugin_root() / recipe.plugin_dir
     installed = path.exists()
     if installed:
-        details = f"Installed at {path}"
+        details = _("Installed at {path}", path=path)
     else:
-        details = "Not installed in the system OBS profile."
+        details = _("Not installed in the system OBS profile.")
     return PluginStatus(installed=installed, plugin_path=path, details=details)

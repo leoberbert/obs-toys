@@ -2,9 +2,15 @@
   "plugins": [
     {
       "id": "obs-multi-rtmp",
-      "name": "OBS Multi RTMP",
-      "summary": "Send one OBS output to multiple RTMP destinations.",
-      "description": "This is a plugin to streaming to multiple RTMP servers concurrently. It's able to share encoders with main output of OBS to save CPU power. It can also use standalone encoders with basic configuration (bitrate).",
+      "name": "Multi RTMP",
+      "summary": {
+        "en": "Send one OBS output to multiple RTMP destinations.",
+        "pt_BR": "Envie uma saída do OBS para vários destinos RTMP."
+      },
+      "description": {
+        "en": "This is a plugin to streaming to multiple RTMP servers concurrently. It's able to share encoders with main output of OBS to save CPU power. It can also use standalone encoders with basic configuration (bitrate).",
+        "pt_BR": "Este plugin permite transmitir para vários servidores RTMP ao mesmo tempo. Ele consegue compartilhar os codificadores com a saída principal do OBS para economizar CPU. Também pode usar codificadores independentes com configuração básica, como bitrate."
+      },
       "project_url": "https://github.com/sorayuki/obs-multi-rtmp",
       "supported_formats": [
         ".tar.xz",
@@ -48,8 +54,14 @@
     {
       "id": "obs-aitum-stream-suite",
       "name": "Aitum Stream Suite",
-      "summary": "Aitum's combined vertical and multistream workflow suite for OBS.",
-      "description": "Customise your environments going between our live and build tabs. Aitum Stream Suite allows you to stream to multiple services at one time combining our multi and vertical OBS plugins into an all in one package. No need for any other multi chat, stream information or activity feed elsewhere. Aitum Stream Suite is everything that is familiar to you. Expand you streaming horizons today!",
+      "summary": {
+        "en": "Aitum's combined vertical and multistream workflow suite for OBS.",
+        "pt_BR": "Suíte da Aitum para fluxo vertical e multistream no OBS."
+      },
+      "description": {
+        "en": "Customise your environments going between our live and build tabs. Aitum Stream Suite allows you to stream to multiple services at one time combining our multi and vertical OBS plugins into an all in one package. No need for any other multi chat, stream information or activity feed elsewhere. Aitum Stream Suite is everything that is familiar to you. Expand you streaming horizons today!",
+        "pt_BR": "Personalize seus ambientes alternando entre as abas de live e build. O Aitum Stream Suite permite transmitir para vários serviços ao mesmo tempo, combinando nossos plugins de multistream e vídeo vertical do OBS em um único pacote. Sem precisar de outro chat múltiplo, informações de stream ou feed de atividade em outro lugar. O Aitum Stream Suite traz tudo o que já é familiar para você. Expanda hoje os horizontes da sua transmissão."
+      },
       "project_url": "https://github.com/Aitum/obs-aitum-stream-suite",
       "supported_formats": [
         ".deb"
@@ -87,9 +99,15 @@
     },
     {
       "id": "obs-move-transition",
-      "name": "OBS Move Transition",
-      "summary": "Adds animated move transitions and transform actions to OBS.",
-      "description": "Plugin for OBS Studio to move sources to a new position during scene transition.",
+      "name": "Move Transition",
+      "summary": {
+        "en": "Adds animated move transitions and transform actions to OBS.",
+        "pt_BR": "Adiciona transições animadas de movimento e ações de transformação ao OBS."
+      },
+      "description": {
+        "en": "Plugin for OBS Studio to move sources to a new position during scene transition.",
+        "pt_BR": "Plugin para o OBS Studio mover fontes para uma nova posição durante a transição de cena."
+      },
       "project_url": "https://github.com/exeldro/obs-move-transition",
       "supported_formats": [
         ".deb"
@@ -127,9 +145,15 @@
     },
     {
       "id": "obs-advanced-masks",
-      "name": "OBS Advanced Masks",
-      "summary": "Expand masking workflows for OBS scenes and sources.",
-      "description": "OBS Advanced Masks is an open-source project designed to expand the masking functionalities within OBS Studio. This plug-in provides filters for users to create intricate and customized masks for their OBS Scenes and Sources.",
+      "name": "Advanced Masks",
+      "summary": {
+        "en": "Expand masking workflows for OBS scenes and sources.",
+        "pt_BR": "Expanda os fluxos de mascaramento para cenas e fontes no OBS."
+      },
+      "description": {
+        "en": "OBS Advanced Masks is an open-source project designed to expand the masking functionalities within OBS Studio. This plug-in provides filters for users to create intricate and customized masks for their OBS Scenes and Sources.",
+        "pt_BR": "OBS Advanced Masks é um projeto de código aberto criado para expandir as funcionalidades de mascaramento dentro do OBS Studio. Este plugin oferece filtros para que os usuários criem máscaras detalhadas e personalizadas para suas cenas e fontes no OBS."
+      },
       "project_url": "https://github.com/FiniteSingularity/obs-advanced-masks",
       "supported_formats": [
         ".zip",
@@ -161,9 +185,15 @@
     },
     {
       "id": "obs-stroke-glow-shadow",
-      "name": "OBS Stroke Glow Shadow",
-      "summary": "Apply stroke, glow, and shadow effects to masked OBS sources.",
-      "description": "The Stroke, Glow, Shadow Plugin offers an efficient way to apply Stroke, Glow, and Shadow effects to masked sources in OBS.",
+      "name": "Stroke Glow Shadow",
+      "summary": {
+        "en": "Apply stroke, glow, and shadow effects to masked OBS sources.",
+        "pt_BR": "Aplique efeitos de contorno, brilho e sombra a fontes mascaradas no OBS."
+      },
+      "description": {
+        "en": "The Stroke, Glow, Shadow Plugin offers an efficient way to apply Stroke, Glow, and Shadow effects to masked sources in OBS.",
+        "pt_BR": "O plugin Stroke, Glow, Shadow oferece uma forma eficiente de aplicar efeitos de contorno, brilho e sombra a fontes mascaradas no OBS."
+      },
       "project_url": "https://github.com/FiniteSingularity/obs-stroke-glow-shadow",
       "supported_formats": [
         ".zip",
@@ -195,9 +225,15 @@
     },
     {
       "id": "obs-retro-effects",
-      "name": "OBS Retro Effects",
-      "summary": "Add CRT, NTSC, and other retro-style visual filters to OBS sources.",
-      "description": "Retro Effects is an OBS plug-in that provides several filters to simulate retro hardware (e.g.- CRTs, NTSC Signals, etc...) giving your OBS sources an authentic retro look/feel. Retro effects provides the following filters.",
+      "name": "Retro Effects",
+      "summary": {
+        "en": "Add CRT, NTSC, and other retro-style visual filters to OBS sources.",
+        "pt_BR": "Adicione filtros visuais de CRT, NTSC e outros estilos retrô às fontes do OBS."
+      },
+      "description": {
+        "en": "Retro Effects is an OBS plug-in that provides several filters to simulate retro hardware (e.g.- CRTs, NTSC Signals, etc...) giving your OBS sources an authentic retro look/feel. Retro effects provides the following filters.",
+        "pt_BR": "Retro Effects é um plugin do OBS que oferece vários filtros para simular hardware retrô, como CRTs e sinais NTSC, dando às suas fontes um visual autêntico de época. O Retro Effects fornece vários filtros com essa proposta."
+      },
       "project_url": "https://github.com/FiniteSingularity/obs-retro-effects",
       "supported_formats": [
         ".zip",
@@ -229,9 +265,15 @@
     },
     {
       "id": "obs-3d-effect",
-      "name": "OBS 3D Effect",
-      "summary": "Add a 3D effect filter to sources in OBS.",
-      "description": "Add a 3D effect filter to sources in OBS.",
+      "name": "3D Effect",
+      "summary": {
+        "en": "Add a 3D effect filter to sources in OBS.",
+        "pt_BR": "Adicione um filtro de efeito 3D às fontes no OBS."
+      },
+      "description": {
+        "en": "Add a 3D effect filter to sources in OBS.",
+        "pt_BR": "Adicione um filtro de efeito 3D às fontes no OBS."
+      },
       "project_url": "https://obsproject.com/forum/resources/3d-effect.1692/",
       "supported_formats": [
         ".zip"
@@ -263,8 +305,14 @@
     {
       "id": "composite-blur",
       "name": "Composite Blur",
-      "summary": "Add high-quality blur filters with multiple algorithms and quality levels.",
-      "description": "Composite Blur Plugin is a comprehensive blur plugin that provides blur algorithms and types for all levels of quality and computational need.",
+      "summary": {
+        "en": "Add high-quality blur filters with multiple algorithms and quality levels.",
+        "pt_BR": "Adicione filtros de blur de alta qualidade com vários algoritmos e níveis de qualidade."
+      },
+      "description": {
+        "en": "Composite Blur Plugin is a comprehensive blur plugin that provides blur algorithms and types for all levels of quality and computational need.",
+        "pt_BR": "Composite Blur Plugin é um plugin completo de blur que oferece algoritmos e tipos de desfoque para diferentes níveis de qualidade e necessidade computacional."
+      },
       "project_url": "https://obsproject.com/forum/resources/composite-blur.1780/",
       "supported_formats": [
         ".zip"
@@ -298,8 +346,14 @@
     {
       "id": "source-clone",
       "name": "Source Clone",
-      "summary": "Clone OBS sources so the copy can use different filters from the original.",
-      "description": "Add source to OBS that lets you clone sources to allow different filters than the original.",
+      "summary": {
+        "en": "Clone OBS sources so the copy can use different filters from the original.",
+        "pt_BR": "Clone fontes do OBS para que a cópia possa usar filtros diferentes do original."
+      },
+      "description": {
+        "en": "Add source to OBS that lets you clone sources to allow different filters than the original.",
+        "pt_BR": "Adicione ao OBS uma fonte que permite clonar outras fontes para usar filtros diferentes dos aplicados na original."
+      },
       "project_url": "https://obsproject.com/forum/resources/source-clone.1632/",
       "supported_formats": [
         ".zip"
@@ -341,8 +395,14 @@
     {
       "id": "advanced-scene-switcher",
       "name": "Advanced Scene Switcher",
-      "summary": "Automate scene changes and actions in OBS with rules and macros.",
-      "description": "This plugin will allow you to automate various tasks using \"Macros\". Macros consist of a list of conditions under which a list of actions will be performed.",
+      "summary": {
+        "en": "Automate scene changes and actions in OBS with rules and macros.",
+        "pt_BR": "Automatize mudanças de cena e ações no OBS com regras e macros."
+      },
+      "description": {
+        "en": "This plugin will allow you to automate various tasks using \"Macros\". Macros consist of a list of conditions under which a list of actions will be performed.",
+        "pt_BR": "Este plugin permite automatizar várias tarefas usando \"Macros\". As macros consistem em uma lista de condições sob as quais uma lista de ações será executada."
+      },
       "project_url": "https://github.com/WarmUpTill/SceneSwitcher",
       "supported_formats": [
         ".deb",

@@ -9,6 +9,7 @@ from pathlib import Path
 from urllib.request import Request, urlopen
 
 from .github import resolve_asset
+from .i18n import _
 from .models import InstallResult, PluginRecipe
 from .obs import obs_plugin_root
 
@@ -156,7 +157,7 @@ def install_plugin(recipe: PluginRecipe) -> InstallResult:
         return InstallResult(
             success=True,
             plugin_id=recipe.plugin_id,
-            message=f"{recipe.name} installed into {plugin_root}",
+            message=_("{name} installed into {path}", name=recipe.name, path=plugin_root),
         )
     except Exception as exc:
         return InstallResult(success=False, plugin_id=recipe.plugin_id, message=str(exc))
@@ -169,14 +170,14 @@ def remove_plugin(recipe: PluginRecipe) -> InstallResult:
             return InstallResult(
                 success=True,
                 plugin_id=recipe.plugin_id,
-                message=f"{recipe.name} is already absent from {plugin_root}",
+                message=_("{name} is already absent from {path}", name=recipe.name, path=plugin_root),
             )
 
         shutil.rmtree(plugin_root)
         return InstallResult(
             success=True,
             plugin_id=recipe.plugin_id,
-            message=f"{recipe.name} removed from {plugin_root}",
+            message=_("{name} removed from {path}", name=recipe.name, path=plugin_root),
         )
     except Exception as exc:
         return InstallResult(success=False, plugin_id=recipe.plugin_id, message=str(exc))

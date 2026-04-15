@@ -3,6 +3,58 @@ set -eu
 
 HERE="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 PYVER_DIR="$(find "$HERE/usr/python/lib" -maxdepth 1 -mindepth 1 -type d -name 'python3.*' | head -n1)"
+APP_ID="io.github.leoberbert.obs_toys"
+DESKTOP_BASENAME="$APP_ID.desktop"
+
+resolve_appimage_path() {
+  if [ -n "${APPIMAGE:-}" ]; then
+    printf '%s\n' "$APPIMAGE"
+    return 0
+  fi
+
+  if [ -n "${OWD:-}" ] && [ -n "${ARGV0:-}" ]; then
+    if [ -f "$OWD/$ARGV0" ]; then
+      readlink -f "$OWD/$ARGV0"
+      return 0
+    fi
+  fi
+
+  if [ -n "${OWD:-}" ]; then
+    for candidate in "$OWD"/*.AppImage; do
+      [ -e "$candidate" ] || continue
+      readlink -f "$candidate"
+      return 0
+    done
+  fi
+
+  return 1
+}
+
+integrate_desktop() {
+  APPIMAGE_PATH="$(resolve_appimage_path || true)"
+  if [ -z "$APPIMAGE_PATH" ]; then
+    return 0
+  fi
+
+  DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+  APPLICATIONS_DIR="$DATA_HOME/applications"
+  ICONS_DIR="$DATA_HOME/icons/hicolor/scalable/apps"
+  DESKTOP_TARGET="$APPLICATIONS_DIR/$DESKTOP_BASENAME"
+  ICON_TARGET="$ICONS_DIR/$APP_ID.svg"
+  TMP_DESKTOP="${DESKTOP_TARGET}.tmp"
+
+  mkdir -p "$APPLICATIONS_DIR" "$ICONS_DIR"
+  cp -f "$HERE/usr/share/icons/hicolor/scalable/apps/$APP_ID.svg" "$ICON_TARGET"
+
+  sed "s|^Exec=.*|Exec=$APPIMAGE_PATH|g" \
+    "$HERE/usr/share/applications/$DESKTOP_BASENAME" > "$TMP_DESKTOP"
+  mv "$TMP_DESKTOP" "$DESKTOP_TARGET"
+  chmod 0644 "$DESKTOP_TARGET"
+
+  if command -v update-desktop-database >/dev/null 2>&1; then
+    update-desktop-database "$APPLICATIONS_DIR" >/dev/null 2>&1 || true
+  fi
+}
 
 export PATH="$HERE/usr/bin:$HERE/usr/python/bin:${PATH:-}"
 export LD_LIBRARY_PATH="$HERE/usr/lib:${LD_LIBRARY_PATH:-}"
@@ -11,5 +63,9 @@ export PYTHONHOME="$HERE/usr/python"
 export PYTHONPATH="$PYVER_DIR/site-packages:${PYTHONPATH:-}"
 export PYTHONNOUSERSITE=1
 export XDG_DATA_DIRS="$HERE/usr/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+export GIO_LAUNCHED_DESKTOP_FILE="$HERE/usr/share/applications/io.github.leoberbert.obs_toys.desktop"
+export GIO_LAUNCHED_DESKTOP_FILE_PID="$$"
+
+integrate_desktop
 
 exec "$HERE/usr/python/bin/python3" -m obs_toys "$@"
