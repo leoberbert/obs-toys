@@ -11,5 +11,7 @@ export PYTHONHOME="$HERE/usr/python"
 export PYTHONPATH="$PYVER_DIR/site-packages:${PYTHONPATH:-}"
 export PYTHONNOUSERSITE=1
 export XDG_DATA_DIRS="$HERE/usr/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+export GIO_LAUNCHED_DESKTOP_FILE="$HERE/usr/share/applications/io.github.leoberbert.obs_toys.desktop"
+export GIO_LAUNCHED_DESKTOP_FILE_PID="$$"
 
 exec "$HERE/usr/python/bin/python3" -m obs_toys "$@"

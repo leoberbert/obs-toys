@@ -5,7 +5,7 @@ import gi
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
-from gi.repository import Adw  # noqa: E402
+from gi.repository import Adw, GLib  # noqa: E402
 
 from .ui import MainWindow
 
@@ -22,5 +22,7 @@ class ObsToysApplication(Adw.Application):
 
 
 def main() -> int:
+    GLib.set_prgname("io.github.leoberbert.obs_toys")
+    GLib.set_application_name("OBS Toys")
     app = ObsToysApplication()
     return app.run([])
