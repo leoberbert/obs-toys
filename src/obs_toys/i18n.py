@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import locale
 import os
 
 
@@ -46,14 +47,41 @@ _TRANSLATIONS = {
 }
 
 
+def _normalize_language(value: str) -> str:
+    normalized = value.strip().split(":")[0].split(".")[0].replace("-", "_")
+    lowered = normalized.lower()
+    if lowered.startswith("pt_br") or lowered.startswith("pt"):
+        return "pt_BR"
+    return "en"
+
+
 def get_language() -> str:
     for key in ("LANGUAGE", "LC_ALL", "LC_MESSAGES", "LANG"):
         value = os.environ.get(key, "").strip()
-        if not value:
-            continue
-        normalized = value.split(":")[0].split(".")[0]
-        if normalized.lower().startswith("pt_br") or normalized.lower().startswith("pt"):
-            return "pt_BR"
+        if value:
+            return _normalize_language(value)
+
+    try:
+        locale.setlocale(locale.LC_ALL, "")
+    except locale.Error:
+        pass
+
+    for candidate in (
+        locale.getlocale()[0],
+        locale.getlocale(locale.LC_MESSAGES)[0] if hasattr(locale, "LC_MESSAGES") else None,
+    ):
+        if candidate:
+            return _normalize_language(candidate)
+
+    try:
+        from gi.repository import GLib  # type: ignore
+
+        for candidate in GLib.get_language_names():
+            if candidate:
+                return _normalize_language(candidate)
+    except Exception:
+        pass
+
     return "en"
 
 
