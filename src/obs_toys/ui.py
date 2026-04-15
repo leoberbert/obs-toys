@@ -85,6 +85,7 @@ class PluginCard(Gtk.Button):
 class MainWindow(Adw.ApplicationWindow):
     def __init__(self, application: Adw.Application) -> None:
         super().__init__(application=application, title="OBS Toys")
+        self.set_icon_name("io.github.leoberbert.obs_toys")
         self.set_default_size(800, 580)
 
         self._recipes = load_catalog()

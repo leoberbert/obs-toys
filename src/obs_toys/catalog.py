@@ -3,7 +3,16 @@ from __future__ import annotations
 import json
 from importlib import resources
 
+from .i18n import get_language
 from .models import AssetSource, InstallLayout, PluginRecipe
+
+
+def _localized_text(value: str | dict[str, str]) -> str:
+    if isinstance(value, str):
+        return value
+
+    language = get_language()
+    return value.get(language) or value.get(language.split("_")[0]) or value.get("en") or next(iter(value.values()))
 
 
 def load_catalog() -> list[PluginRecipe]:
@@ -16,8 +25,8 @@ def load_catalog() -> list[PluginRecipe]:
             PluginRecipe(
                 plugin_id=entry["id"],
                 name=entry["name"],
-                summary=entry["summary"],
-                description=entry["description"],
+                summary=_localized_text(entry["summary"]),
+                description=_localized_text(entry["description"]),
                 project_url=entry["project_url"],
                 source=AssetSource(
                     repo=entry["source"].get("repo", ""),

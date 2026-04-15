@@ -52,7 +52,10 @@ chmod +x "$APPDIR/AppRun"
 cp "$DESKTOP_FILE" "$APPDIR/usr/share/applications/"
 cp "$ICON_SOURCE" "$ICON_TARGET"
 ln -sf "usr/share/applications/$(basename "$DESKTOP_FILE")" "$APPDIR/$(basename "$DESKTOP_FILE")"
-ln -sf "$ICON_TARGET" "$APPDIR/io.github.leoberbert.obs_toys.svg"
+ln -sf "usr/share/icons/hicolor/scalable/apps/io.github.leoberbert.obs_toys.svg" \
+  "$APPDIR/io.github.leoberbert.obs_toys.svg"
+ln -sf "usr/share/icons/hicolor/scalable/apps/io.github.leoberbert.obs_toys.svg" \
+  "$APPDIR/.DirIcon"
 
 if [[ -n "$PYTHON_LIBS" ]]; then
   while IFS= read -r libpath; do

@@ -8,3 +8,4 @@ Icon=io.github.leoberbert.obs_toys
 Terminal=false
 Categories=AudioVideo;Video;Utility;
 StartupNotify=true
+StartupWMClass=io.github.leoberbert.obs_toys

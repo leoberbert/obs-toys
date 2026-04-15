@@ -46,7 +46,7 @@ _TRANSLATIONS = {
 }
 
 
-def _detect_language() -> str:
+def get_language() -> str:
     for key in ("LANGUAGE", "LC_ALL", "LC_MESSAGES", "LANG"):
         value = os.environ.get(key, "").strip()
         if not value:
@@ -58,7 +58,7 @@ def _detect_language() -> str:
 
 
 def translate(message: str, **kwargs: object) -> str:
-    language = _detect_language()
+    language = get_language()
     translated = _TRANSLATIONS.get(language, {}).get(message, message)
     if kwargs:
         return translated.format(**kwargs)
