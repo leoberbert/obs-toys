@@ -18,6 +18,11 @@
 
 **OBS Toys** is a desktop app focused on making OBS Studio plugins easier to use on Linux. Instead of manually unpacking `.deb`, `.zip`, or `.tar.*` files and copying plugin assets into the correct OBS profile directories, OBS Toys handles that workflow in a cleaner GTK interface.
 
+## Screenshot
+
+<img width="850" height="630" alt="image" src="https://github.com/user-attachments/assets/a30b0003-f753-4a05-a6a5-ff9a420c9c18" />
+
+
 ## Download and Run
 
 Download the latest `OBS-Toys-x86_64.AppImage` from the [Releases](https://github.com/leoberbert/obs-toys/releases) page.
