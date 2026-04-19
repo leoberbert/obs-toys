@@ -75,8 +75,8 @@ if [[ -n "$PYTHON_STDLIB" && -d "$PYTHON_STDLIB" ]]; then
 fi
 
 mkdir -p "$PYTHON_SITE_PACKAGES"
-python3 -m pip install --upgrade pip wheel setuptools
-python3 -m pip install --no-deps --target "$PYTHON_SITE_PACKAGES" "$ROOT_DIR"
+python3 -m pip install --break-system-packages --upgrade pip wheel setuptools
+python3 -m pip install --break-system-packages --no-deps --target "$PYTHON_SITE_PACKAGES" "$ROOT_DIR"
 
 for path in \
   "$SYSTEM_DIST_PACKAGES/gi" \
