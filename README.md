@@ -66,6 +66,17 @@ Notes:
 - `Composite Blur`
 - `Source Clone`
 - `Advanced Scene Switcher`
+- `DistroAV`
+- `Shader Filter`
+- `Downstream Keyer`
+- `Source Dock`
+- `Transition Table`
+- `Media Controls`
+- `Source Record`
+- `Source Copy`
+- `Scene Collection Manager`
+- `Input Overlay`
+- `Background Removal`
 
 ## What OBS Toys Does
 
