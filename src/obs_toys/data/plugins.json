@@ -478,6 +478,503 @@
           }
         ]
       }
+    },
+    {
+      "id": "distroav",
+      "name": "DistroAV",
+      "summary": {
+        "en": "Send and receive NDI video and audio between OBS and other devices on the network.",
+        "pt_BR": "Envie e receba vídeo e áudio NDI entre o OBS e outros dispositivos na rede."
+      },
+      "description": {
+        "en": "DistroAV (formerly obs-ndi) brings Network Device Interface (NDI) sources and outputs to OBS Studio. Requires the free NDI Runtime from NDI Tools to be installed separately on your system.",
+        "pt_BR": "O DistroAV (antigo obs-ndi) traz fontes e saídas NDI (Network Device Interface) para o OBS Studio. Requer o NDI Runtime gratuito do NDI Tools instalado separadamente no sistema."
+      },
+      "project_url": "https://github.com/DistroAV/DistroAV",
+      "supported_formats": [
+        ".deb"
+      ],
+      "source": {
+        "repo": "DistroAV/DistroAV",
+        "asset_patterns": [
+          "x86_64-linux-gnu\\.deb$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "distroav",
+        "layouts": [
+          {
+            "from": [
+              "usr/lib/x86_64-linux-gnu/obs-plugins/distroav.so",
+              "usr/lib/obs-plugins/distroav.so",
+              "obs-plugins/distroav.so"
+            ],
+            "to": "bin/64bit/distroav.so",
+            "kind": "file"
+          },
+          {
+            "from": [
+              "usr/share/obs/obs-plugins/distroav/locale",
+              "share/obs/obs-plugins/distroav/locale",
+              "data/locale"
+            ],
+            "to": "data/locale",
+            "kind": "dir"
+          }
+        ]
+      }
+    },
+    {
+      "id": "obs-shaderfilter",
+      "name": "Shader Filter",
+      "summary": {
+        "en": "Apply custom GLSL/HLSL-style shaders as OBS source filters.",
+        "pt_BR": "Aplique shaders personalizados como filtros de fonte no OBS."
+      },
+      "description": {
+        "en": "obs-shaderfilter lets you load user-defined shader effects on OBS sources, with a large set of included examples for stylized looks, transitions, and visual effects.",
+        "pt_BR": "O obs-shaderfilter permite carregar efeitos de shader definidos pelo usuário nas fontes do OBS, com vários exemplos inclusos para looks estilizados, transições e efeitos visuais."
+      },
+      "project_url": "https://github.com/exeldro/obs-shaderfilter",
+      "supported_formats": [
+        ".tar.gz",
+        ".zip"
+      ],
+      "source": {
+        "repo": "exeldro/obs-shaderfilter",
+        "asset_patterns": [
+          "ubuntu-22\\.04\\.tar\\.gz$",
+          "linux.*\\.tar\\.gz$",
+          "\\.tar\\.gz$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "obs-shaderfilter",
+        "layouts": [
+          {
+            "from": [
+              "obs-shaderfilter",
+              "usr/share/obs/obs-plugins/obs-shaderfilter",
+              "share/obs/obs-plugins/obs-shaderfilter"
+            ],
+            "to": ".",
+            "kind": "dir"
+          }
+        ]
+      }
+    },
+    {
+      "id": "downstream-keyer",
+      "name": "Downstream Keyer",
+      "summary": {
+        "en": "Add a downstream keyer dock to overlay scenes on top of your program output.",
+        "pt_BR": "Adicione um dock de downstream keyer para sobrepor cenas na saída de programa."
+      },
+      "description": {
+        "en": "Downstream Keyer adds a dock that lets you place overlay scenes above the program view, similar to a traditional broadcast DSK workflow.",
+        "pt_BR": "O Downstream Keyer adiciona um dock que permite colocar cenas de overlay acima da visão de programa, semelhante a um fluxo de DSK de broadcast tradicional."
+      },
+      "project_url": "https://github.com/exeldro/obs-downstream-keyer",
+      "supported_formats": [
+        ".deb"
+      ],
+      "source": {
+        "repo": "exeldro/obs-downstream-keyer",
+        "asset_patterns": [
+          "x86_64-linux-gnu\\.deb$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "downstream-keyer",
+        "layouts": [
+          {
+            "from": [
+              "usr/lib/x86_64-linux-gnu/obs-plugins/downstream-keyer.so",
+              "usr/lib/obs-plugins/downstream-keyer.so",
+              "obs-plugins/downstream-keyer.so"
+            ],
+            "to": "bin/64bit/downstream-keyer.so",
+            "kind": "file"
+          },
+          {
+            "from": [
+              "usr/share/obs/obs-plugins/downstream-keyer/locale",
+              "share/obs/obs-plugins/downstream-keyer/locale",
+              "data/locale"
+            ],
+            "to": "data/locale",
+            "kind": "dir"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source-dock",
+      "name": "Source Dock",
+      "summary": {
+        "en": "Create docks that show and control selected OBS sources.",
+        "pt_BR": "Crie docks que mostram e controlam fontes selecionadas do OBS."
+      },
+      "description": {
+        "en": "Source Dock lets you open dedicated docks for sources so you can preview and interact with them without digging through the main scene tree.",
+        "pt_BR": "O Source Dock permite abrir docks dedicados para fontes, para que você possa pré-visualizar e interagir com elas sem vasculhar a árvore principal de cenas."
+      },
+      "project_url": "https://github.com/exeldro/obs-source-dock",
+      "supported_formats": [
+        ".deb"
+      ],
+      "source": {
+        "repo": "exeldro/obs-source-dock",
+        "asset_patterns": [
+          "x86_64-linux-gnu\\.deb$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "source-dock",
+        "layouts": [
+          {
+            "from": [
+              "usr/lib/x86_64-linux-gnu/obs-plugins/source-dock.so",
+              "usr/lib/obs-plugins/source-dock.so",
+              "obs-plugins/source-dock.so"
+            ],
+            "to": "bin/64bit/source-dock.so",
+            "kind": "file"
+          },
+          {
+            "from": [
+              "usr/share/obs/obs-plugins/source-dock/locale",
+              "share/obs/obs-plugins/source-dock/locale",
+              "data/locale"
+            ],
+            "to": "data/locale",
+            "kind": "dir"
+          }
+        ]
+      }
+    },
+    {
+      "id": "transition-table",
+      "name": "Transition Table",
+      "summary": {
+        "en": "Configure different transitions for specific scene-to-scene combinations.",
+        "pt_BR": "Configure transições diferentes para combinações específicas de cena para cena."
+      },
+      "description": {
+        "en": "Transition Table lets you define which transition OBS should use when switching between particular scenes, instead of relying on a single global transition.",
+        "pt_BR": "O Transition Table permite definir qual transição o OBS deve usar ao alternar entre cenas específicas, em vez de depender de uma única transição global."
+      },
+      "project_url": "https://github.com/exeldro/obs-transition-table",
+      "supported_formats": [
+        ".deb"
+      ],
+      "source": {
+        "repo": "exeldro/obs-transition-table",
+        "asset_patterns": [
+          "x86_64-linux-gnu\\.deb$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "transition-table",
+        "layouts": [
+          {
+            "from": [
+              "usr/lib/x86_64-linux-gnu/obs-plugins/transition-table.so",
+              "usr/lib/obs-plugins/transition-table.so",
+              "obs-plugins/transition-table.so"
+            ],
+            "to": "bin/64bit/transition-table.so",
+            "kind": "file"
+          },
+          {
+            "from": [
+              "usr/share/obs/obs-plugins/transition-table/locale",
+              "share/obs/obs-plugins/transition-table/locale",
+              "data/locale"
+            ],
+            "to": "data/locale",
+            "kind": "dir"
+          }
+        ]
+      }
+    },
+    {
+      "id": "media-controls",
+      "name": "Media Controls",
+      "summary": {
+        "en": "Add a dock with playback controls for media sources.",
+        "pt_BR": "Adicione um dock com controles de reprodução para fontes de mídia."
+      },
+      "description": {
+        "en": "Media Controls provides a convenient dock to play, pause, restart, and seek media sources without selecting them in the sources list first.",
+        "pt_BR": "O Media Controls oferece um dock prático para reproduzir, pausar, reiniciar e buscar em fontes de mídia sem precisar selecioná-las primeiro na lista de fontes."
+      },
+      "project_url": "https://github.com/exeldro/obs-media-controls",
+      "supported_formats": [
+        ".deb"
+      ],
+      "source": {
+        "repo": "exeldro/obs-media-controls",
+        "asset_patterns": [
+          "x86_64-linux-gnu\\.deb$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "media-controls",
+        "layouts": [
+          {
+            "from": [
+              "usr/lib/x86_64-linux-gnu/obs-plugins/media-controls.so",
+              "usr/lib/obs-plugins/media-controls.so",
+              "obs-plugins/media-controls.so"
+            ],
+            "to": "bin/64bit/media-controls.so",
+            "kind": "file"
+          },
+          {
+            "from": [
+              "usr/share/obs/obs-plugins/media-controls/locale",
+              "share/obs/obs-plugins/media-controls/locale",
+              "data/locale"
+            ],
+            "to": "data/locale",
+            "kind": "dir"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source-record",
+      "name": "Source Record",
+      "summary": {
+        "en": "Record or stream a single OBS source independently from the main output.",
+        "pt_BR": "Grave ou transmita uma única fonte do OBS de forma independente da saída principal."
+      },
+      "description": {
+        "en": "Source Record adds a filter that can record or stream an individual source, useful for isolating gameplay, cameras, or other feeds from the main canvas.",
+        "pt_BR": "O Source Record adiciona um filtro que pode gravar ou transmitir uma fonte individual, útil para isolar gameplay, câmeras ou outros feeds do canvas principal."
+      },
+      "project_url": "https://github.com/exeldro/obs-source-record",
+      "supported_formats": [
+        ".tar.gz",
+        ".zip"
+      ],
+      "source": {
+        "repo": "exeldro/obs-source-record",
+        "asset_patterns": [
+          "ubuntu-22\\.04\\.tar\\.gz$",
+          "linux.*\\.tar\\.gz$",
+          "\\.tar\\.gz$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "source-record",
+        "layouts": [
+          {
+            "from": [
+              "source-record",
+              "obs-source-record",
+              "usr/share/obs/obs-plugins/source-record",
+              "share/obs/obs-plugins/source-record"
+            ],
+            "to": ".",
+            "kind": "dir"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source-copy",
+      "name": "Source Copy",
+      "summary": {
+        "en": "Copy and paste sources, scenes, filters, and transitions between scene collections.",
+        "pt_BR": "Copie e cole fontes, cenas, filtros e transições entre coleções de cenas."
+      },
+      "description": {
+        "en": "Source Copy makes it easy to duplicate OBS items across scenes and scene collections, speeding up setup work when rebuilding layouts.",
+        "pt_BR": "O Source Copy facilita duplicar itens do OBS entre cenas e coleções de cenas, acelerando a montagem ao recriar layouts."
+      },
+      "project_url": "https://github.com/exeldro/obs-source-copy",
+      "supported_formats": [
+        ".deb"
+      ],
+      "source": {
+        "repo": "exeldro/obs-source-copy",
+        "asset_patterns": [
+          "x86_64-linux-gnu\\.deb$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "source-copy",
+        "layouts": [
+          {
+            "from": [
+              "usr/lib/x86_64-linux-gnu/obs-plugins/source-copy.so",
+              "usr/lib/obs-plugins/source-copy.so",
+              "obs-plugins/source-copy.so"
+            ],
+            "to": "bin/64bit/source-copy.so",
+            "kind": "file"
+          },
+          {
+            "from": [
+              "usr/share/obs/obs-plugins/source-copy/locale",
+              "share/obs/obs-plugins/source-copy/locale",
+              "data/locale"
+            ],
+            "to": "data/locale",
+            "kind": "dir"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-collection-manager",
+      "name": "Scene Collection Manager",
+      "summary": {
+        "en": "Backup, switch, and manage OBS scene collections from a dedicated dock.",
+        "pt_BR": "Faça backup, alterne e gerencie coleções de cenas do OBS em um dock dedicado."
+      },
+      "description": {
+        "en": "Scene Collection Manager helps you organize scene collections with backup and restore workflows that are friendlier than editing files by hand.",
+        "pt_BR": "O Scene Collection Manager ajuda a organizar coleções de cenas com fluxos de backup e restauração mais amigáveis do que editar arquivos manualmente."
+      },
+      "project_url": "https://github.com/exeldro/obs-scene-collection-manager",
+      "supported_formats": [
+        ".deb"
+      ],
+      "source": {
+        "repo": "exeldro/obs-scene-collection-manager",
+        "asset_patterns": [
+          "x86_64-linux-gnu\\.deb$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "scene-collection-manager",
+        "layouts": [
+          {
+            "from": [
+              "usr/lib/x86_64-linux-gnu/obs-plugins/scene-collection-manager.so",
+              "usr/lib/obs-plugins/scene-collection-manager.so",
+              "obs-plugins/scene-collection-manager.so"
+            ],
+            "to": "bin/64bit/scene-collection-manager.so",
+            "kind": "file"
+          },
+          {
+            "from": [
+              "usr/share/obs/obs-plugins/scene-collection-manager/locale",
+              "share/obs/obs-plugins/scene-collection-manager/locale",
+              "data/locale"
+            ],
+            "to": "data/locale",
+            "kind": "dir"
+          }
+        ]
+      }
+    },
+    {
+      "id": "input-overlay",
+      "name": "Input Overlay",
+      "summary": {
+        "en": "Show keyboard, mouse, and gamepad input overlays on stream.",
+        "pt_BR": "Mostre overlays de teclado, mouse e controle na transmissão."
+      },
+      "description": {
+        "en": "Input Overlay displays live keyboard, mouse, and gamepad activity as an on-stream overlay, popular for tutorials, gaming, and productivity demos.",
+        "pt_BR": "O Input Overlay exibe a atividade ao vivo de teclado, mouse e controle como overlay na transmissão, popular em tutoriais, games e demos de produtividade."
+      },
+      "project_url": "https://github.com/univrsal/input-overlay",
+      "supported_formats": [
+        ".deb"
+      ],
+      "source": {
+        "repo": "univrsal/input-overlay",
+        "asset_patterns": [
+          "x86_64-linux-gnu\\.deb$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "input-overlay",
+        "layouts": [
+          {
+            "from": [
+              "usr/lib/x86_64-linux-gnu/obs-plugins/input-overlay.so",
+              "usr/lib/obs-plugins/input-overlay.so",
+              "obs-plugins/input-overlay.so"
+            ],
+            "to": "bin/64bit/input-overlay.so",
+            "kind": "file"
+          },
+          {
+            "from": [
+              "usr/share/obs/obs-plugins/input-overlay",
+              "share/obs/obs-plugins/input-overlay",
+              "data"
+            ],
+            "to": "data",
+            "kind": "dir"
+          }
+        ]
+      }
+    },
+    {
+      "id": "obs-backgroundremoval",
+      "name": "Background Removal",
+      "summary": {
+        "en": "Remove or replace webcam backgrounds with local AI models.",
+        "pt_BR": "Remova ou substitua o fundo da webcam com modelos de IA locais."
+      },
+      "description": {
+        "en": "Background Removal uses on-device AI models to cut out people from a webcam feed without a green screen. Larger download because model files are bundled.",
+        "pt_BR": "O Background Removal usa modelos de IA no próprio dispositivo para recortar pessoas da webcam sem chroma key. O download é maior porque os arquivos de modelo vêm inclusos."
+      },
+      "project_url": "https://github.com/locaal-ai/obs-backgroundremoval",
+      "supported_formats": [
+        ".deb"
+      ],
+      "source": {
+        "repo": "locaal-ai/obs-backgroundremoval",
+        "asset_patterns": [
+          "obs-backgroundremoval_.*_amd64\\.deb$"
+        ],
+        "prereleases": false
+      },
+      "install": {
+        "plugin_dir": "obs-backgroundremoval",
+        "layouts": [
+          {
+            "from": [
+              "usr/local/lib/obs-plugins/obs-backgroundremoval.so",
+              "usr/lib/x86_64-linux-gnu/obs-plugins/obs-backgroundremoval.so",
+              "usr/lib/obs-plugins/obs-backgroundremoval.so",
+              "obs-plugins/obs-backgroundremoval.so"
+            ],
+            "to": "bin/64bit/obs-backgroundremoval.so",
+            "kind": "file"
+          },
+          {
+            "from": [
+              "usr/local/share/obs/obs-plugins/obs-backgroundremoval",
+              "usr/share/obs/obs-plugins/obs-backgroundremoval",
+              "share/obs/obs-plugins/obs-backgroundremoval",
+              "data"
+            ],
+            "to": "data",
+            "kind": "dir"
+          }
+        ]
+      }
     }
   ]
 }
